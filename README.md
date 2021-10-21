@@ -21,3 +21,4 @@ This is the starting point for this project.
 - [ ] Basic Tests
 - [ ] Room
 - [ ] Enchantment Layout
+- [ ] i18n
