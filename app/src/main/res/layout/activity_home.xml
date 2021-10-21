@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.pages.home.HomeActivity">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeRigh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeH25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeH50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHomeH75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHomeH50"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeCenter"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHomeH25" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHomeH50"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeCenter"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHomeH25" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_green_light"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHomeH75"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHomeH50" />
+
+    <Button
+        android:id="@+id/buttonReport"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="Relatorio de transações"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHomeBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bem Vindo Rodrigo Nairnei"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHomeTop" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Seu saldo em carteira é R$ XX.XX"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ultima cotação atualizada as 00:00"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHomeH75" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Para negociar, selecione a carteira de interesse abaixo"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
