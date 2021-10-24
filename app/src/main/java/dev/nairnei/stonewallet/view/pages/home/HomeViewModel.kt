@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class HomeViewModel : ViewModel() {
 
     lateinit var repositoryOlinda: Retrofit
@@ -22,13 +23,30 @@ class HomeViewModel : ViewModel() {
 
     private var olindaErrorService = MutableLiveData<String?>()
     private var mBitcoinErrorService = MutableLiveData<String?>()
+    private var lastUpdateTimeLiveData = MutableLiveData<String?>()
 
     private var olindaLiveData = MutableLiveData<OlindaResponse?>()
     private var mBicoinLiveData = MutableLiveData<MercadoBitcoinResponse?>()
+    private val timer: Timer = Timer()
 
     fun init() {
-        repositoryOlinda = MercadoBitcoinService().getRetrofitInstace();
-        repositoryMbcoin = OlindaService().getRetrofitInstace();
+        repositoryOlinda = MercadoBitcoinService().getRetrofitInstace()
+        repositoryMbcoin = OlindaService().getRetrofitInstace()
+
+        ///timer to fetch data every 15 minutes
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                fetchOlinda()
+                fetchMercadoBitcoin()
+                updateLastData()
+            }
+        }, 0, 900000)
+    }
+
+    private fun updateLastData() {
+        val formatedDate = SimpleDateFormat("dd-MM-yyyy HH:mm")
+        val currentDate = formatedDate.format(Date())
+        lastUpdateTimeLiveData.postValue(currentDate)
     }
 
     fun fetchMercadoBitcoin() {
@@ -84,6 +102,16 @@ class HomeViewModel : ViewModel() {
 
     fun getMBitcoin(): MutableLiveData<MercadoBitcoinResponse?> {
         return mBicoinLiveData
+    }
+
+    fun getLastFetch(): MutableLiveData<String?> {
+        return lastUpdateTimeLiveData
+    }
+
+    fun forceFetch() {
+        fetchMercadoBitcoin()
+        fetchOlinda()
+        updateLastData()
     }
 
     ///todo: how show error fetch? on toast? in a textView or in alertDialog?
