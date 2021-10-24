@@ -30,7 +30,7 @@ class ApiTest {
         val sdf = SimpleDateFormat("MM-dd-yyyy")
         val currentDate = sdf.format(Date())
         val response = endPoint.getDolarCotation(
-            "'$currentDate'",
+            "'10-22-2020'",
             "1",
             "json",
             "cotacaoCompra,cotacaoVenda,dataHoraCotacao"
@@ -44,7 +44,5 @@ class ApiTest {
         val endPoint = mRepo.create(MercadoBitcoinApi::class.java)
         val response = endPoint.getBitcoinCotation("BTC", "ticker").execute();
         assertEquals(response.code(), 200)
-
-
     }
 }
