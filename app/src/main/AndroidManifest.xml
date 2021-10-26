@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoneWallet">
         <activity
+            android:name=".view.pages.NegotiateActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.dialogs.ChoiceDialog"
+            android:exported="true" />
+        <activity
             android:name=".view.pages.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -22,7 +28,7 @@
         </activity>
         <activity
             android:name=".view.pages.HomeActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

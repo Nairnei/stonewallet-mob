@@ -1,9 +1,13 @@
 package dev.nairnei.stonewallet.view.pages
 
+import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dev.nairnei.stonewallet.R
@@ -44,6 +48,11 @@ class HomeActivity : AppCompatActivity() {
         var buttonReport = findViewById<Button>(R.id.buttonReport)
         var buttonUpdateQuotation = findViewById<Button>(R.id.buttonUpdateQuotation)
 
+        ///find card
+        var cardBrita = findViewById<CardView>(R.id.cardViewBrita)
+        var cardBitcoin = findViewById<CardView>(R.id.cardViewBitcoin)
+        var cardReal = findViewById<CardView>(R.id.cardViewReal)
+
         ///instantiate
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         repositoryViewModel = ViewModelProvider(this).get(DaoViewModel::class.java)
@@ -55,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
         })
 
         homeViewModel.getOlinda().observe(this, Observer {
-            textViewBritaBuy.text = "Compra: " + (it?.value?.get(0)?.cotacaoCompra.toString())
+            textViewBritaBuy.text = "Compra: " + it?.value?.get(0)?.cotacaoCompra ?: "-:-"
             textViewBritaSell.text = "Venda: " + (it?.value?.get(0)?.cotacaoVenda.toString())
         })
 
@@ -80,5 +89,88 @@ class HomeActivity : AppCompatActivity() {
             println(repositoryViewModel.currentUser().value?.email)
             homeViewModel.forceFetch()
         }
+
+        cardBrita.setOnClickListener {
+            negociateDialog("Brita")
+        }
+
+        cardBitcoin.setOnClickListener {
+            negociateDialog("Bitcoin")
+        }
+
+        cardReal.setOnClickListener {
+            negociateDialog("Real")
+        }
+
+
+    }
+
+    fun negociateDialog(typeDialog: String) {
+        val choiceDialog = Dialog(this)
+
+        choiceDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        choiceDialog.setCancelable(true)
+        choiceDialog.setContentView(R.layout.dialog_choice)
+        ///find buttons
+        var firstButton = choiceDialog.findViewById<Button>(R.id.button3)
+        var secondButton = choiceDialog.findViewById<Button>(R.id.button4)
+
+        when (typeDialog) {
+            "Brita" -> {
+                firstButton.text = "Trocar Brita por Bitcoin"
+                secondButton.text = "Vender Brita por Real"
+
+                firstButton.setOnClickListener {
+                    val intent = Intent(this, NegotiateActivity::class.java)
+                    intent.putExtra("fromCoin", "Brita")
+                    intent.putExtra("toCoin", "Bitcoin")
+                    choiceDialog.dismiss()
+                    startActivity(intent)
+                }
+
+                secondButton.setOnClickListener {
+                    val intent = Intent(this, NegotiateActivity::class.java)
+                    intent.putExtra("fromCoin", "Brita")
+                    intent.putExtra("toCoin", "Real")
+                    startActivity(intent)
+                }
+            }
+            "Bitcoin" -> {
+                firstButton.text = "Trocar Bitcoin por Brita"
+                secondButton.text = "Vender Bitcoin por Real"
+                firstButton.setOnClickListener {
+                    val intent = Intent(this, NegotiateActivity::class.java)
+                    intent.putExtra("fromCoin", "Bitcon")
+                    intent.putExtra("toCoin", "Brita")
+                    startActivity(intent)
+                }
+                secondButton.setOnClickListener {
+                    val intent = Intent(this, NegotiateActivity::class.java)
+                    intent.putExtra("fromCoin", "Bitcoin")
+                    intent.putExtra("toCoin", "Real")
+                    startActivity(intent)
+                }
+
+            }
+            "Real" -> {
+                firstButton.text = "Comprar Brita com Real"
+                secondButton.text = "Comprar Bitcoin com Real"
+                firstButton.setOnClickListener {
+                    val intent = Intent(this, NegotiateActivity::class.java)
+                    intent.putExtra("fromCoin", "Real")
+                    intent.putExtra("toCoin", "Brita")
+                    startActivity(intent)
+                }
+
+                secondButton.setOnClickListener {
+                    val intent = Intent(this, NegotiateActivity::class.java)
+                    intent.putExtra("fromCoin", "Real")
+                    intent.putExtra("toCoin", "Bitcoin")
+                    startActivity(intent)
+                }
+
+            }
+        }
+        choiceDialog.show()
     }
 }

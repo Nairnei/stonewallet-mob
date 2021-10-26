@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.pages.NegotiateActivity">
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateRigh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateH25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateH50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNegociateH75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:id="@+id/textViewNegotiateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coin A to B"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineNegociateTop" />
+
+    <TextView
+        android:id="@+id/textViewNegotiateTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Swap A"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineNegociateH25"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="insert valor A to swap to B"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNegotiateTo" />
+
+    <TextView
+        android:id="@+id/textViewTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="to B:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Value in B"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTo" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Confirmar"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineNegociateBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateCenter" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineNegociateBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateCenter"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft" />
+
+    <TextView
+        android:id="@+id/textViewCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Current A "
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/textViewNegotiateTo"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
