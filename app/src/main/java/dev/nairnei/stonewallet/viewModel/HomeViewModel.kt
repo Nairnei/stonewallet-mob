@@ -1,4 +1,4 @@
-package dev.nairnei.stonewallet.view.pages.home
+package dev.nairnei.stonewallet.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +17,7 @@ import java.util.*
 
 
 class HomeViewModel : ViewModel() {
+
 
     lateinit var repositoryOlinda: Retrofit
     lateinit var repositoryMbcoin: Retrofit

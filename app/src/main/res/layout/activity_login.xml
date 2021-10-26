@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.pages.login.LoginActivity">
+    tools:context=".view.pages.LoginActivity">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -64,7 +64,7 @@
         app:layout_constraintGuide_percent="0.75" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonLoginOrCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -73,41 +73,14 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineLoginLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelineLoginH50" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:text="Esqueci minha senha"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineLoginRigh"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLoginLeft"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editTextEmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineLoginRigh"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLoginLeft" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineLoginH50"
         app:layout_constraintEnd_toStartOf="@+id/guidelineLoginRigh"
@@ -117,8 +90,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineLoginH25"
+        android:text="Wallet Stone"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guidelineLoginRigh"
         app:layout_constraintStart_toStartOf="@+id/guidelineLoginLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelineLoginH25" />

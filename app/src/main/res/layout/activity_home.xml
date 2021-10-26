@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.pages.home.HomeActivity">
+    tools:context=".view.pages.HomeActivity">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -84,13 +84,6 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
             app:layout_constraintTop_toTopOf="@+id/guidelineHomeTop" />
 
-        <TextView
-            android:id="@+id/textViewCurrentCash"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Seu saldo em carteira é R$ XX.XX"
-            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textViewInfo"
@@ -116,13 +109,44 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelineHomeH25">
 
-        <TextView
-            android:id="@+id/textViewMercadoBitcoinValue"
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="BTC 0"
-            android:textColor="@color/black" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewBitcoinAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Saldo"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+
+                android:id="@+id/textViewBitcoinSell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Valor Venda"
+                android:textColor="@color/black" />
+
+            <TextView
+
+                android:id="@+id/textViewBitcoinBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Valor Compra"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -138,13 +162,44 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineHomeCenter"
         app:layout_constraintTop_toTopOf="@+id/guidelineHomeH25">
 
-        <TextView
-            android:id="@+id/textViewOlindaValue"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="B$ 0"
-            android:textColor="@color/black" />
+            android:orientation="vertical">
+
+            <TextView
+
+                android:id="@+id/textViewBritaAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Saldo"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+
+                android:id="@+id/textViewBritaSell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Valor Venda"
+                android:textColor="@color/black" />
+
+            <TextView
+
+                android:id="@+id/textViewBritaBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Valor Compra"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -160,27 +215,47 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelineHomeH50">
 
-        <TextView
-            android:id="@+id/textViewRealValue"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="R$ 100.000,00"
-            android:textColor="@color/black" />
+            android:orientation="vertical">
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Seu saldo"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textViewRealAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="R$ 100.000,00"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
 
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/buttonReport"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Relatorio de transações"
         app:layout_constraintBottom_toTopOf="@+id/buttonUpdateQuotation"
         app:layout_constraintEnd_toStartOf="@+id/guidelineHomeRigh"
-        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelineHomeH75" />
+        app:layout_constraintStart_toStartOf="@+id/guidelineHomeLeft" />
 
     <Button
         android:id="@+id/buttonUpdateQuotation"
