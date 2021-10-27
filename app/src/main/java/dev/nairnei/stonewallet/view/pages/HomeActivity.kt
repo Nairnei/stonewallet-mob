@@ -36,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
         var textViewRealAmout = findViewById<TextView>(R.id.textViewRealAmount)
         var textViewBritaAmount = findViewById<TextView>(R.id.textViewBritaAmount)
         var textViewBitcoinAmout = findViewById<TextView>(R.id.textViewBitcoinAmount)
-        var textViewLastUpdate = findViewById<TextView>(R.id.textViewLastUpdate)
+        var textViewLastUpdate = findViewById<TextView>(R.id.textViewNegociateLastQuotation)
 
         var textViewBritaBuy = findViewById<TextView>(R.id.textViewBritaBuy)
         var textViewBritaSell = findViewById<TextView>(R.id.textViewBritaSell)
@@ -64,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
         })
 
         homeViewModel.getOlinda().observe(this, Observer {
-            textViewBritaBuy.text = "Compra: " + it?.value?.get(0)?.cotacaoCompra ?: "-:-"
+            textViewBritaBuy.text = "Compra: " + it?.value?.get(0)?.cotacaoCompra
             textViewBritaSell.text = "Venda: " + (it?.value?.get(0)?.cotacaoVenda.toString())
         })
 
@@ -111,7 +111,7 @@ class HomeActivity : AppCompatActivity() {
         choiceDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         choiceDialog.setCancelable(true)
         choiceDialog.setContentView(R.layout.dialog_choice)
-        ///find buttons
+
         var firstButton = choiceDialog.findViewById<Button>(R.id.button3)
         var secondButton = choiceDialog.findViewById<Button>(R.id.button4)
 
@@ -124,6 +124,7 @@ class HomeActivity : AppCompatActivity() {
                     val intent = Intent(this, NegotiateActivity::class.java)
                     intent.putExtra("fromCoin", "Brita")
                     intent.putExtra("toCoin", "Bitcoin")
+                    intent.putExtra("token", currentUser)
                     choiceDialog.dismiss()
                     startActivity(intent)
                 }
@@ -132,6 +133,8 @@ class HomeActivity : AppCompatActivity() {
                     val intent = Intent(this, NegotiateActivity::class.java)
                     intent.putExtra("fromCoin", "Brita")
                     intent.putExtra("toCoin", "Real")
+                    intent.putExtra("token", currentUser)
+                    choiceDialog.dismiss()
                     startActivity(intent)
                 }
             }
@@ -140,17 +143,20 @@ class HomeActivity : AppCompatActivity() {
                 secondButton.text = "Vender Bitcoin por Real"
                 firstButton.setOnClickListener {
                     val intent = Intent(this, NegotiateActivity::class.java)
-                    intent.putExtra("fromCoin", "Bitcon")
+                    intent.putExtra("fromCoin", "Bitcoin")
                     intent.putExtra("toCoin", "Brita")
+                    intent.putExtra("token", currentUser)
+                    choiceDialog.dismiss()
                     startActivity(intent)
                 }
                 secondButton.setOnClickListener {
                     val intent = Intent(this, NegotiateActivity::class.java)
                     intent.putExtra("fromCoin", "Bitcoin")
                     intent.putExtra("toCoin", "Real")
+                    intent.putExtra("token", currentUser)
+                    choiceDialog.dismiss()
                     startActivity(intent)
                 }
-
             }
             "Real" -> {
                 firstButton.text = "Comprar Brita com Real"
@@ -159,6 +165,8 @@ class HomeActivity : AppCompatActivity() {
                     val intent = Intent(this, NegotiateActivity::class.java)
                     intent.putExtra("fromCoin", "Real")
                     intent.putExtra("toCoin", "Brita")
+                    intent.putExtra("token", currentUser)
+                    choiceDialog.dismiss()
                     startActivity(intent)
                 }
 
@@ -166,9 +174,10 @@ class HomeActivity : AppCompatActivity() {
                     val intent = Intent(this, NegotiateActivity::class.java)
                     intent.putExtra("fromCoin", "Real")
                     intent.putExtra("toCoin", "Bitcoin")
+                    intent.putExtra("token", currentUser)
+                    choiceDialog.dismiss()
                     startActivity(intent)
                 }
-
             }
         }
         choiceDialog.show()

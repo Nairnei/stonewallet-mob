@@ -85,7 +85,7 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/editTextSwap"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -100,15 +100,15 @@
         android:id="@+id/textViewTo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="to B:"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
         app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuotationA" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewPreviewB"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -141,13 +141,46 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft" />
 
     <TextView
-        android:id="@+id/textViewCurrent"
+        android:id="@+id/textViewValueA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Current A "
+        android:text="Value in A"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/textViewNegotiateTo"
         app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft" />
+
+    <TextView
+        android:id="@+id/textViewNegociateLastQuotation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Ultima cotação atualizada as 00:00"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineNegociateH75"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineNegociateH75" />
+
+    <TextView
+        android:id="@+id/textViewQuotationB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Loading quotation"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineNegociateH50" />
+
+    <TextView
+        android:id="@+id/textViewQuotationA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Loading cotation"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSwap" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

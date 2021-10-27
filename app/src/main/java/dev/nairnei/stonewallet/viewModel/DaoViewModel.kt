@@ -13,8 +13,9 @@ class DaoViewModel : ViewModel() {
     private var userLiveData = MutableLiveData<UserModel?>()
 
 
-    fun init(context: Context) {
+    fun init(context: Context): RoomService {
         database = RoomService.getInstance(context)
+        return database;
     }
 
     ///fixme: AsyncTask is deprecated
