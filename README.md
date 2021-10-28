@@ -28,6 +28,7 @@ About cryptocurrency financial transactions, it is correct to state that:
 - [X] Room
 - [ ] Enchantment Layout
 - [ ] i18n
+- [ ] Build Variants
 
 ## Project Implementation Comment
 
