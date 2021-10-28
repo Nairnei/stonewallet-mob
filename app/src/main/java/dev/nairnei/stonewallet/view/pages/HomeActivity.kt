@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        title = "Carteira Stone"
         val extras = intent.extras
         if (extras != null) {
             currentUser = extras.getString("token").toString()

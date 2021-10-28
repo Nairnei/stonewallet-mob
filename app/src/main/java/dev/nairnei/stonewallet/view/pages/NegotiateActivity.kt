@@ -30,6 +30,7 @@ class NegotiateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_negotiate)
+        title = "Negociação"
 
         val extras = intent.extras
         if (extras != null) {
@@ -48,7 +49,7 @@ class NegotiateActivity : AppCompatActivity() {
         var buttonNegotiate = findViewById<Button>(R.id.buttonNegotiate)
         var buttonCancel = findViewById<Button>(R.id.buttonCancel)
 
-        textViewTitle.text = "Swap $fromCoin to $toCoin"
+        textViewTitle.text = "Trocar $fromCoin por $toCoin"
 
         negociateViewModel = ViewModelProvider(this).get(NegociateViewModel::class.java)
         repositoryViewModel = ViewModelProvider(this).get(DaoViewModel::class.java)

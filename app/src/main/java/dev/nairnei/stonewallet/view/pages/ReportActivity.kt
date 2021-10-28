@@ -18,7 +18,7 @@ class ReportActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
-        title = "Reports"
+        title = "Relatórios de transações"
 
         val extras = intent.extras
         if (extras != null) {

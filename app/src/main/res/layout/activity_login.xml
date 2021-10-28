@@ -80,6 +80,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="Insira um ID"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineLoginH50"
@@ -90,8 +91,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wallet Stone"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        android:text="Stone Wallet"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guidelineLoginRigh"
         app:layout_constraintStart_toStartOf="@+id/guidelineLoginLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelineLoginH25" />
