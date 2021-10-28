@@ -6,6 +6,7 @@ import dev.nairnei.stonewallet.model.UserModel
 import dev.nairnei.stonewallet.service.room.RoomService
 import android.os.AsyncTask
 import androidx.lifecycle.MutableLiveData
+import dev.nairnei.stonewallet.model.ReportModel
 
 
 class DaoViewModel : ViewModel() {
@@ -17,6 +18,105 @@ class DaoViewModel : ViewModel() {
         database = RoomService.getInstance(context)
         return database;
     }
+
+    fun trade(
+        userId: String, amountFrom: Double, amountTo: Double, createdAt: String,
+        from: String, quoatationFrom: String, quotationTo: String, to: String
+    ) {
+
+        AsyncTask.execute {
+            val report = ReportModel(
+                userId = userId,
+                amountFrom = amountFrom.toString(),
+                amoutTo = amountTo.toString(),
+                createdAt = createdAt,
+                quotationFrom = quoatationFrom,
+                quotationTo = quotationTo,
+                to = to,
+                from = from
+            )
+
+            database.userDao().getUser(userId).let {
+                when (from) {
+                    "Real" -> {
+
+                        when (to) {
+                            "Bitcoin" -> {
+                                if (amountFrom <= it.amountReal) {
+                                    it.amountReal = (it.amountReal - amountFrom).toLong()
+                                    it.amountBitcoin = (it.amountBitcoin + amountTo).toLong()
+                                    database.reportDao().insert(report)
+                                    database.userDao().update(it)
+                                }
+                            }
+                            "Brita" -> {
+                                if (amountFrom <= it.amountReal) {
+                                    it.amountReal = (it.amountReal - amountFrom).toLong()
+                                    it.amountBrita = (it.amountBrita + amountTo).toLong()
+                                    database.reportDao().insert(report)
+                                    database.userDao().update(it)
+                                }
+                            }
+                        }
+                    }
+
+                    "Brita" -> {
+
+                        when (to) {
+                            "Real" -> {
+                                if (amountFrom <= it.amountBrita) {
+                                    it.amountBrita = (it.amountBrita - amountFrom).toLong()
+                                    it.amountReal = (it.amountReal + amountFrom).toLong()
+                                    database.reportDao().insert(report)
+                                    database.userDao().update(it)
+                                }
+
+                            }
+                            "Bitcoin" -> {
+
+                                if (amountFrom <= it.amountBrita) {
+                                    it.amountBrita = (it.amountBrita - amountFrom).toLong()
+                                    it.amountBitcoin = (it.amountBitcoin + amountFrom).toLong()
+                                    database.reportDao().insert(report)
+                                    database.userDao().update(it)
+                                }
+                            }
+                        }
+                    }
+
+                    "Bitcoin" -> {
+
+                        when (to) {
+                            "Real" -> {
+
+                                if (amountFrom <= it.amountBitcoin) {
+                                    it.amountBitcoin = (it.amountBitcoin - amountFrom).toLong()
+                                    it.amountReal = (it.amountReal + amountFrom).toLong()
+                                    database.reportDao().insert(report)
+                                    database.userDao().update(it)
+                                }
+
+                            }
+                            "Brita" -> {
+
+                                if (amountFrom <= it.amountBitcoin) {
+                                    it.amountBrita = (it.amountBrita - amountFrom).toLong()
+                                    it.amountReal = (it.amountReal + amountFrom).toLong()
+                                    database.reportDao().insert(report)
+                                    database.userDao().update(it)
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+    }
+
 
     ///fixme: AsyncTask is deprecated
     fun createOrLogin(email: String) {

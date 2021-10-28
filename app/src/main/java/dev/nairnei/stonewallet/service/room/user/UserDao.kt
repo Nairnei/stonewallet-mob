@@ -14,6 +14,9 @@ import androidx.room.*
     @Query("Select *from users where email = :email")
     fun login(email: String) : UserModel?
 
+   @Query("Select *from users where email = :email")
+   fun getUser(email: String) : UserModel
+
     @Update
     fun update(vararg users: UserModel)
 

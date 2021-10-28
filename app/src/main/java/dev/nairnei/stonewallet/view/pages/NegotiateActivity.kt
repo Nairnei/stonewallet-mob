@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import dev.nairnei.stonewallet.R
 import dev.nairnei.stonewallet.viewModel.DaoViewModel
 import dev.nairnei.stonewallet.viewModel.NegociateViewModel
+import java.util.*
 
 class NegotiateActivity : AppCompatActivity() {
 
@@ -19,6 +21,8 @@ class NegotiateActivity : AppCompatActivity() {
 
     private lateinit var negociateViewModel: NegociateViewModel
     private lateinit var repositoryViewModel: DaoViewModel
+    private var toQuotation: Double? = 0.0
+    private var fromQuotation: Double? = 0.0
 
     ///fixme
     private lateinit var currentUser: String
@@ -41,6 +45,8 @@ class NegotiateActivity : AppCompatActivity() {
         var textViewPreview = findViewById<TextView>(R.id.textViewPreviewB)
         var textViewLastQuotation = findViewById<TextView>(R.id.textViewNegociateLastQuotation)
         var editTextSoldA = findViewById<EditText>(R.id.editTextSwap)
+        var buttonNegotiate = findViewById<Button>(R.id.buttonNegotiate)
+        var buttonCancel = findViewById<Button>(R.id.buttonCancel)
 
         textViewTitle.text = "Swap $fromCoin to $toCoin"
 
@@ -49,54 +55,55 @@ class NegotiateActivity : AppCompatActivity() {
 
         ///add observers
         negociateViewModel.getMBitcoin().observe(this, Observer {
-            when (fromCoin) {
-                "Bitcoin" -> {
-                    textViewQuotationA.text = negociateViewModel.getMBitcoin().value?.ticker?.buy.toString()
-                }
-                "Brita" -> {
-                    textViewQuotationA.text = negociateViewModel.getOlinda().value?.value?.first()?.cotacaoCompra.toString()
-                }
+            if (fromCoin == "Bitcoin") {
+                fromQuotation = it?.ticker?.buy.toString().toDouble()
+                textViewQuotationA.text =
+                    fromQuotation.toString()
             }
 
+            if (fromCoin == "Real") {
+                fromQuotation = 1.0
+                textViewQuotationA.text =
+                    fromQuotation.toString()
+            }
+
+            if (toCoin == "Bitcoin") {
+                toQuotation = it?.ticker?.buy.toString().toDouble()
+                textViewQuotationB.text =
+                    toQuotation.toString()
+            }
+
+            if (toCoin == "Real") {
+                toQuotation = 1.0
+                textViewQuotationB.text =
+                    toQuotation.toString()
+            }
         })
 
         negociateViewModel.getOlinda().observe(this, Observer {
-            when (fromCoin) {
-                "Bitcoin" -> {
-                    when (toCoin) {
-                        "Brita" -> {
-                            textViewQuotationB.text = negociateViewModel.getOlinda().value?.value?.first()?.cotacaoVenda.toString()
-                        }
-                        "Real" -> {
-                            textViewQuotationB.text = "1"
-                        }
-                    }
-                }
-                "Brita" -> {
-                    when (toCoin) {
-                        "Bitcoin" -> {
-                            textViewQuotationB.text = negociateViewModel.getMBitcoin().value?.ticker?.sell.toString()
-                        }
-                        "Real" -> {
-                            textViewQuotationB.text = "1"
-                        }
-                    }
-                }
-                "Real" -> {
-                    textViewQuotationA.text = "1"
-                    when (toCoin) {
-                        "Bitcoin" -> {
-
-                            textViewQuotationB.text = negociateViewModel.getMBitcoin().value?.ticker?.sell.toString()
-                        }
-                        "Brita" -> {
-
-                            textViewQuotationB.text = negociateViewModel.getOlinda().value?.value?.first()?.cotacaoVenda.toString()
-                        }
-                    }
-                }
-
+            if (fromCoin == "Brita") {
+                fromQuotation = it?.value?.first()?.cotacaoCompra
+                textViewQuotationA.text =
+                    fromQuotation.toString()
             }
+
+            if (fromCoin == "Real") {
+                fromQuotation = 1.0
+                textViewQuotationA.text =
+                    fromQuotation.toString()
+            }
+
+            if (toCoin == "Brita") {
+                toQuotation = it?.value?.first()?.cotacaoCompra
+                textViewQuotationB.text =
+                    toQuotation.toString()
+            }
+            if (toCoin == "Real") {
+                toQuotation = 1.0
+                textViewQuotationB.text =
+                    toQuotation.toString()
+            }
+
         })
 //
         negociateViewModel.getLastFetch().observe(this, {
@@ -139,6 +146,24 @@ class NegotiateActivity : AppCompatActivity() {
 
             }
         })
+
+        buttonNegotiate.setOnClickListener {
+            repositoryViewModel.trade(
+                userId = currentUser,
+                to = toCoin,
+                from = fromCoin,
+                quotationTo = toQuotation.toString(),
+                quoatationFrom = fromQuotation.toString(),
+                createdAt = Date().time.toString(),
+                amountFrom = editTextSoldA.text.toString().toDouble(),
+                amountTo = textViewPreview.text.toString().toDouble()
+            )
+            finish()
+        }
+
+        buttonCancel.setOnClickListener {
+            finish()
+        }
 
         ///start ViewModel
         negociateViewModel.init()

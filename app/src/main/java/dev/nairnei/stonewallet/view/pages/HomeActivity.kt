@@ -23,6 +23,11 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var currentUser: String
 
 
+    override fun onResume() {
+        super.onResume()
+        repositoryViewModel.setCurrentUser(currentUser)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -183,3 +188,4 @@ class HomeActivity : AppCompatActivity() {
         choiceDialog.show()
     }
 }
+
