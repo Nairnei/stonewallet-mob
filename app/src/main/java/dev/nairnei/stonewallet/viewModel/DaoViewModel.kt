@@ -66,8 +66,10 @@ class DaoViewModel : ViewModel() {
                         when (to) {
                             "Real" -> {
                                 if (amountFrom <= it.amountBrita) {
+
                                     it.amountBrita = (it.amountBrita - amountFrom).toLong()
-                                    it.amountReal = (it.amountReal + amountFrom).toLong()
+                                    it.amountReal = (it.amountReal + amountFrom * quoatationFrom.toDouble()).toLong()
+
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
@@ -77,7 +79,7 @@ class DaoViewModel : ViewModel() {
 
                                 if (amountFrom <= it.amountBrita) {
                                     it.amountBrita = (it.amountBrita - amountFrom).toLong()
-                                    it.amountBitcoin = (it.amountBitcoin + amountFrom).toLong()
+                                    it.amountBitcoin = (it.amountBitcoin + amountFrom * quoatationFrom.toDouble()).toLong()
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
@@ -92,7 +94,7 @@ class DaoViewModel : ViewModel() {
 
                                 if (amountFrom <= it.amountBitcoin) {
                                     it.amountBitcoin = (it.amountBitcoin - amountFrom).toLong()
-                                    it.amountReal = (it.amountReal + amountFrom).toLong()
+                                    it.amountReal = (it.amountReal + amountFrom * quoatationFrom.toDouble()).toLong()
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
@@ -102,7 +104,7 @@ class DaoViewModel : ViewModel() {
 
                                 if (amountFrom <= it.amountBitcoin) {
                                     it.amountBrita = (it.amountBrita - amountFrom).toLong()
-                                    it.amountReal = (it.amountReal + amountFrom).toLong()
+                                    it.amountReal = (it.amountReal + amountFrom * quoatationFrom.toDouble()).toLong()
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
