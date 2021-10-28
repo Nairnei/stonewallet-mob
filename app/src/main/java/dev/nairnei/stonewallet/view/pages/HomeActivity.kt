@@ -79,9 +79,9 @@ class HomeActivity : AppCompatActivity() {
 
         repositoryViewModel.currentUser().observe(this, {
             textViewWelcomeUser.text = "Bem vindo " + it?.email
-            textViewRealAmout.text = "R\$ " + it?.amountReal.toString()
-            textViewBritaAmount.text = "USD\$ " + it?.amountBrita.toString()
-            textViewBitcoinAmout.text = "BTC " + it?.amountBitcoin.toString()
+            textViewRealAmout.text = "R\$ " + String.format("%.0f", (it?.amountReal))
+            textViewBritaAmount.text = "USD\$ " + String.format("%.2f", (it?.amountBrita))
+            textViewBitcoinAmout.text = "BTC " +String.format("%.5f",  (it?.amountBitcoin))
         })
 
         ///start ViewModel

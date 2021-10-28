@@ -37,7 +37,7 @@ class HomeViewModel : ViewModel() {
         ///timer to fetch data every 15 minutes
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
-                fetchOlinda()
+                fetchOlinda(null)
                 fetchMercadoBitcoin()
                 updateLastData()
             }
@@ -68,15 +68,22 @@ class HomeViewModel : ViewModel() {
         })
     }
 
-    fun fetchOlinda() {
+    fun fetchOlinda(date: Date?) {
         val endPoint = repositoryMbcoin.create(OlindaApi::class.java)
+        val recursiveDate = Date()
+        ///on weekends, there no quotation return, on the current day, quotation is empty :C
+        ///I will take the previous business day's quotation
+        if(date != null)
+        {
+            ///86400000: one day in milliseconds
+            recursiveDate.time = date.time - 86400000
+        }
 
-        ///fixme: on weekends, there no quotation return
         val sdf = SimpleDateFormat("MM-dd-yyyy")
-        val currentDate = sdf.format(Date())
+        val currentDate = sdf.format(recursiveDate)
 
         val request = endPoint.getDolarCotation(
-            "'10-22-2020'",
+            "'$currentDate'",
             "1",
             "json",
             "cotacaoCompra,cotacaoVenda,dataHoraCotacao"
@@ -87,7 +94,14 @@ class HomeViewModel : ViewModel() {
                 call: Call<OlindaResponse>,
                 response: Response<OlindaResponse>
             ) {
-                olindaLiveData.value = response.body()
+                if(response.body()?.value?.isEmpty() == true)
+                {
+                    fetchOlinda(recursiveDate)
+                }
+                else
+                {
+                    olindaLiveData.value = response.body()
+                }
             }
 
             override fun onFailure(call: Call<OlindaResponse>, t: Throwable) {
@@ -111,7 +125,7 @@ class HomeViewModel : ViewModel() {
 
     fun forceFetch() {
         fetchMercadoBitcoin()
-        fetchOlinda()
+        fetchOlinda(null)
         updateLastData()
     }
 

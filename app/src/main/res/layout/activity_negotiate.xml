@@ -91,7 +91,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="insert valor A to swap to B"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toStartOf="@+id/guidelineNegociateRigh"
         app:layout_constraintStart_toStartOf="@+id/guidelineNegociateLeft"
         app:layout_constraintTop_toBottomOf="@+id/textViewNegotiateTo" />

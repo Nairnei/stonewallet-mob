@@ -12,9 +12,9 @@ data class UserModel(
     @ColumnInfo(name = "email")
     var email: String,
     @ColumnInfo(name = "amount_real")
-    var amountReal: Long = 10000000,
+    var amountReal: Double = 10000000.0,
     @ColumnInfo(name = "amount_brita")
-    var amountBrita: Long = 0,
+    var amountBrita: Double = 0.0,
     @ColumnInfo(name = "amount_bitcoin")
-    var amountBitcoin: Long = 0
+    var amountBitcoin: Double = 0.0
 )

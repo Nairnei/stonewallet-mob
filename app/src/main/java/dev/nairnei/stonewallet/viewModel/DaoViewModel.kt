@@ -7,6 +7,7 @@ import dev.nairnei.stonewallet.service.room.RoomService
 import android.os.AsyncTask
 import androidx.lifecycle.MutableLiveData
 import dev.nairnei.stonewallet.model.ReportModel
+import kotlin.math.roundToLong
 
 
 class DaoViewModel : ViewModel() {
@@ -40,20 +41,19 @@ class DaoViewModel : ViewModel() {
             database.userDao().getUser(userId).let {
                 when (from) {
                     "Real" -> {
-
                         when (to) {
                             "Bitcoin" -> {
                                 if (amountFrom <= it.amountReal) {
-                                    it.amountReal = (it.amountReal - amountFrom).toLong()
-                                    it.amountBitcoin = (it.amountBitcoin + amountTo).toLong()
+                                    it.amountBitcoin = (it.amountBitcoin + amountTo)
+                                    it.amountReal = (it.amountReal - amountFrom)
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
                             }
                             "Brita" -> {
                                 if (amountFrom <= it.amountReal) {
-                                    it.amountReal = (it.amountReal - amountFrom).toLong()
-                                    it.amountBrita = (it.amountBrita + amountTo).toLong()
+                                    it.amountBrita = (it.amountBrita + amountTo)
+                                    it.amountReal = (it.amountReal - amountFrom)
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
@@ -62,24 +62,19 @@ class DaoViewModel : ViewModel() {
                     }
 
                     "Brita" -> {
-
                         when (to) {
                             "Real" -> {
                                 if (amountFrom <= it.amountBrita) {
-
-                                    it.amountBrita = (it.amountBrita - amountFrom).toLong()
-                                    it.amountReal = (it.amountReal + amountFrom * quoatationFrom.toDouble()).toLong()
-
+                                    it.amountReal = (it.amountReal + amountTo)
+                                    it.amountBrita = (it.amountBrita - amountFrom)
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
-
                             }
                             "Bitcoin" -> {
-
                                 if (amountFrom <= it.amountBrita) {
-                                    it.amountBrita = (it.amountBrita - amountFrom).toLong()
-                                    it.amountBitcoin = (it.amountBitcoin + amountFrom * quoatationFrom.toDouble()).toLong()
+                                    it.amountBitcoin = (it.amountBitcoin + amountTo)
+                                    it.amountBrita = (it.amountBrita - amountFrom)
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
@@ -88,23 +83,20 @@ class DaoViewModel : ViewModel() {
                     }
 
                     "Bitcoin" -> {
-
                         when (to) {
                             "Real" -> {
-
                                 if (amountFrom <= it.amountBitcoin) {
-                                    it.amountBitcoin = (it.amountBitcoin - amountFrom).toLong()
-                                    it.amountReal = (it.amountReal + amountFrom * quoatationFrom.toDouble()).toLong()
+                                    it.amountReal = (it.amountReal + amountTo)
+                                    it.amountBitcoin = (it.amountBitcoin - amountFrom)
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
-
                             }
                             "Brita" -> {
 
                                 if (amountFrom <= it.amountBitcoin) {
-                                    it.amountBrita = (it.amountBrita - amountFrom).toLong()
-                                    it.amountReal = (it.amountReal + amountFrom * quoatationFrom.toDouble()).toLong()
+                                    it.amountBrita = (it.amountBrita + amountTo)
+                                    it.amountBitcoin = (it.amountBitcoin - amountFrom)
                                     database.reportDao().insert(report)
                                     database.userDao().update(it)
                                 }
