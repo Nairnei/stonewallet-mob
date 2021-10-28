@@ -95,6 +95,12 @@ class HomeActivity : AppCompatActivity() {
             homeViewModel.forceFetch()
         }
 
+        buttonReport.setOnClickListener {
+            val intent = Intent(this, ReportActivity::class.java)
+            intent.putExtra("token", currentUser)
+            startActivity(intent)
+        }
+
         cardBrita.setOnClickListener {
             negociateDialog("Brita")
         }

@@ -12,6 +12,7 @@ import dev.nairnei.stonewallet.model.ReportModel
 class DaoViewModel : ViewModel() {
     lateinit var database: RoomService
     private var userLiveData = MutableLiveData<UserModel?>()
+    private var listReportLiveData = MutableLiveData<List<ReportModel>>()
 
 
     fun init(context: Context): RoomService {
@@ -144,6 +145,19 @@ class DaoViewModel : ViewModel() {
 
     fun currentUser(): MutableLiveData<UserModel?> {
         return userLiveData
+    }
+
+    fun listReport() : MutableLiveData<List<ReportModel>>
+    {
+        return listReportLiveData
+    }
+
+    fun listReports(currentUser: String){
+        AsyncTask.execute {
+            database.reportDao().list(currentUser).let {
+                listReportLiveData.postValue(it)
+            }
+        }
     }
 
     ///fixme: AsyncTask is deprecated

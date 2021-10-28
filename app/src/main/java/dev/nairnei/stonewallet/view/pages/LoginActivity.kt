@@ -41,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
         ///buttons actions
         buttonLoginOrCreate.setOnClickListener {
+            if(editTextEmailAddress.text.isNotBlank() && editTextEmailAddress.text.isNotEmpty())
             repositoryViewModel.createOrLogin(editTextEmailAddress.text.toString())
         }
     }
